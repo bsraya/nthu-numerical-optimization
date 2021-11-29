@@ -20,8 +20,15 @@
 	\item (10\%) Write its normal equation.
     {\color{blue} 
         \begin{align}
-        A^T A \vec{x} &= A^T \vec{b} \\
-        \begin{bmatrix}4 & 2 & 1 \\ 8 & 4 & 2\end{bmatrix} \begin{bmatrix}4 & 8 \\ 2 & 4 \\ 1 & 2\end{bmatrix} \begin{bmatrix}x_1 \\ x_2\end{bmatrix} &= \begin{bmatrix}4 & 2 & 1 \\ 8 & 4 & 2\end{bmatrix} \begin{bmatrix}21/4 \\ 0 \\ 0\end{bmatrix}
+            A^T A \vec{x} &= A^T \vec{b} \\
+            \begin{bmatrix}4 & 2 & 1 \\ 8 & 4 & 2\end{bmatrix} \begin{bmatrix}4 & 8 \\ 2 & 4 \\ 1 & 2\end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} &= \begin{bmatrix}4 & 2 & 1 \\ 8 & 4 & 2\end{bmatrix} \begin{bmatrix}21/4 \\ 0 \\ 0\end{bmatrix} \\
+            \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} &= \begin{bmatrix} 1 \\ 2 \end{bmatrix} \\
+            x_1 + 2x_2 = 1
+        \end{align}
+
+        Then, we can express $x_1$ and $x_2$ as
+        \begin{align}
+            \vec{x} = \begin{bmatrix} 1-2t \\ t \end{bmatrix}
         \end{align}
     }
 
@@ -62,6 +69,31 @@
     \item (10\%) Show that $\vec{z}\in \mathbb{R}^2$ is a least square solution for $A\vec{x}=\vec{b}$ if and only if $\vec{z}$ is part of a solution to the larger linear system:
     $$\left[ \begin{array}{cc}0 & A^T \\ A & I\end{array} \right] \left[\begin{array}{cc} \vec{z} \\ \vec{y} \end{array}\right] = \left[\begin{array}{cc} 0 \\ \vec{b}\end{array}\right]$$
     {\color{blue}
+        \begin{align}
+            \begin{bmatrix} 0 & A^T \\ A & I \end{bmatrix} \begin{bmatrix} \vec{z} \\ \vec{y} \end{bmatrix} &= \begin{bmatrix} 0 \\ \vec{b} \end{bmatrix} \\
+            \begin{bmatrix} 0 & 0 & 4 & 2 & 1 \\ 0 & 0 & 8 & 4 & 2 \\ 4 & 8 & 1 & 0 & 0 \\ 2 & 4 & 0 & 1 & 0 \\ 1 & 2 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} \vec{z}_1 \\ \vec{z}_2 \\ \vec{y}_1 \\ \vec{y}_2 \\ \vec{y}_3 \end{bmatrix} &= \begin{bmatrix} 0 \\ 0 \\ 21/4 \\ 0 \\ 0 \end{bmatrix}
+        \end{align}
+        
+        Solving $y_1$, $y_2$, and $y_3$, we express them as
+        \begin{align}
+            \vec{y} = \begin{bmatrix} 5/4 \\ -2 \\ -1 \end{bmatrix}
+        \end{align}
+
+        After acquiring $\vec{y}$, we can acquire $\vec{z}$ with the third, the fourth, and the fifth equalities. Thus,
+        \begin{align}
+            4\vec{z}_1 + 8\vec{z}_2 + \vec{y}_1 &= \frac{21}{4} \\ 
+            2\vec{z}_1 + 4\vec{z}_2 + \vec{y}+2 &= 0 \\
+            \vec{z}_1 + 2\vec{z}_2 + \vec{y}_3 &= 0
+        \end{align}
+
+        Solving the equalities above, we have $\vec{z}_1 + 2\vec{z}_2 = 1$. 
+        Let $\vec{z}_1 = 1 - 2t$ and $\vec{z}_2 = t$. We can express them as,
+        \begin{align}
+            \vec{z} = \begin{bmatrix} 1 - 2t \\ t \end{bmatrix}
+        \end{align}
+
+        Since the $\vec{z}$ that we acquire here is the same with the $\vec{z}$ we got from its normal equation, 
+        thus the premise, $\vec{z} \in \mathbb{R}^2$ is a least square solution for $A\vec{x} = \vec{b}$ if and only if $\vec{z}$ is a part of the solution to the larger linear system, holds.
     }
 
 
@@ -72,7 +104,9 @@ $$\vec{p}_{k+1} = -\nabla f_{k+1} + \frac{\nabla f_{k+1}^T\vec{y}_k}{\vec{y}^T\v
 However, the matrix $\hat{H}_{k+1}$ is neither symmetric nor positive deﬁnite.
 \begin{enumerate}
     \item (10\%) Please show that the matrix $\hat{H}_{k+1}$ is singular. $\\$ (You can only prove it for the case $\nabla f_k, \vec{p}_k, \vec{y}_k, \vec{s}_k \in \mathbb{R}^2$ for all $k \in \mathbb{N}$.)
-{\color{blue} asd}
+    {\color{blue}
+        Your answer here!
+    }
     \item (0\%) Please read the reference book (Page 180) to understand the derivation of the inverse hessian formula in Note05 (Page 16). $\\$(you don't need to write anything in this subproblem.) $$H_{k+1} = (I - \frac{\vec{s}_k\vec{y}_k^T}{\vec{y}_k^T\vec{s}_k})(I - \frac{\vec{y}_k\vec{s}_k^T}{\vec{y}_k^T\vec{s}_k}) + \frac{\vec{s}_k\vec{s}_k^T}{\vec{y}_k^T\vec{s}_k}$$
 \end{enumerate}
 
@@ -84,6 +118,7 @@ $\sigma_1, \sigma_2, \ldots, \sigma_n$.  Moreover, $U$ and $V$ are orthogonal ma
 Show the solution of the above problem is the $\sigma^2$.
 
 {\color{blue}
+    Your answer here!
 }
 
 \item Consider the following linear programming problem:
@@ -98,23 +133,28 @@ $$\begin{array}{lll}
 \begin{enumerate}
     \item (10\%) Please refer Note08 (Page 2) to draw the figure of the constraints by any means, and use that to solve the problem. 
     {\color{blue} 
+        Answer here!
     }
 
     \item (10\%) Derive its dual problem and solve the dual problem by any means. Compare the solutions of the primal and the dual problems.
     {\color{blue} 
+        Answer here!
     }
 
     \item (10\%) Verify the complementarity slackness condition.
     {\color{blue}
+        Answer here!
     }
 
     \item (10\%) Transform the problem to the standard form.
     {\color{blue} 
+        Answer here!
     }
 
     \item (10\%) Solve it by the simplex method, as provided in Figure 1, using $\vec{x}_0 = (0, 0)$.
     Indicate $B_k, N_k, \vec{s}_k, \vec{d}_k, p_k, q_k, \gamma_k$ in each step.\
     {\color{blue} 
+        Answer here!
     }
 \end{enumerate}
 
