@@ -3,6 +3,7 @@
 \usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{color}
+\usepackage{float}
 
 \title{CS532100 Numerical Optimization Homework 2}
 \author{109062710 Bijon Setyawan Raya}
@@ -80,21 +81,33 @@
         \item
             First, we are going to show that if $\vec{z}\in \mathbb{R}^2$ is a least square solution for $A\vec{x}=\vec{b}$ then $\vec{z}$ is part of a solution to the larger linear system.
             
-            Let's substitute $\vec{x}$ with $\vec{z}$. We then have,
             \begin{align}
-                A\vec{z} &= \vec{b} \\
-                A^T A \vec{z} &= A^T \vec{b} \\
-                \begin{bmatrix}4 & 2 & 1 \\ 8 & 4 & 2\end{bmatrix} \begin{bmatrix}4 & 8 \\ 2 & 4 \\ 1 & 2\end{bmatrix} \begin{bmatrix} z_1 \\ z_2 \end{bmatrix} &= \begin{bmatrix}4 & 2 & 1 \\ 8 & 4 & 2\end{bmatrix} \begin{bmatrix}21/4 \\ 0 \\ 0\end{bmatrix} \\
-                \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \begin{bmatrix} z_1 \\ z_2 \end{bmatrix} &= \begin{bmatrix} 1 \\ 2 \end{bmatrix} \\
-                z_1 + 2 z_2 = 1
+                A\vec{x} &= \vec{b} \\
+                A^T A \vec{x} &= A^T \vec{b} \\
+                \begin{bmatrix}4 & 2 & 1 \\ 8 & 4 & 2\end{bmatrix} \begin{bmatrix}4 & 8 \\ 2 & 4 \\ 1 & 2\end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} &= \begin{bmatrix}4 & 2 & 1 \\ 8 & 4 & 2\end{bmatrix} \begin{bmatrix}21/4 \\ 0 \\ 0\end{bmatrix} \\
+                \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} &= \begin{bmatrix} 1 \\ 2 \end{bmatrix} \\
+                x_1 + 2 x_2 = 1
             \end{align}
     
-            Then, we can express $z_1$ and $z_2$ as
+            Then, we can express $x_1$ and $x_2$ as
             \begin{align}
-                \vec{z} = \begin{bmatrix} 1-2t \\ t \end{bmatrix}
+                \vec{x} = \begin{bmatrix} 1-2t \\ t \end{bmatrix}
             \end{align}
 
-            The premise, if $\vec{z}\in \mathbb{R}^2$ is a least square solution for $A\vec{x}=\vec{b}$ then $\vec{z}$ is part of a solution to the larger linear system, holds.
+            Plugging $\vec{x}$ into $\vec{z}$ in the larger linear system, we then have
+            \begin{align}
+                \begin{bmatrix} 0 & A^T \\ A & I \end{bmatrix} \begin{bmatrix} \vec{z} \\ \vec{y} \end{bmatrix} &= \begin{bmatrix} 0 \\ \vec{b} \end{bmatrix} \\
+                \begin{bmatrix} 0 & 0 & 4 & 2 & 1 \\ 0 & 0 & 8 & 4 & 2 \\ 4 & 8 & 1 & 0 & 0 \\ 2 & 4 & 0 & 1 & 0 \\ 1 & 2 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 1-2t \\ t \\ \vec{y}_1 \\ \vec{y}_2 \\ \vec{y}_3 \end{bmatrix} &= \begin{bmatrix} 0 \\ 0 \\ 21/4 \\ 0 \\ 0 \end{bmatrix}
+            \end{align}
+
+            Solving $\vec{y}$, we have
+            \begin{align}
+                \vec{y} = \begin{bmatrix}5/4 \\ -2 \\ -1\end{bmatrix}
+            \end{align}
+
+            From $\vec{y}$, we can tell that $\vec{z}\in \mathbb{R}^2$ is a least square solution for $A\vec{x}=\vec{b}$.
+
+            Thus, the premise, if $\vec{z}\in \mathbb{R}^2$ is a least square solution for $A\vec{x}=\vec{b}$ then $\vec{z}$ is part of a solution to the larger linear system, holds.
             
 
         \item
@@ -154,7 +167,7 @@ However, the matrix $\hat{H}_{k+1}$ is neither symmetric nor positive deﬁnite.
 \end{enumerate}
 
 \item (10\%) The total least square problem is to solve the following problem
-\[\min_{\vec{x}, \|\vec{x}\|=1} \vec{x}^TA^TA\vec{x}\]
+\[\min_{\vec{x}, \|\vec{x}\|=1} \vec{x}^T A^T A\vec{x}\]
 where $A$ is an $m\times n$ matrix.  Here we assume $m>n$.  
 Let $A=U\Sigma V^T$ be the SVD of $A$, where $U$ is the matrix of left singular vectors, $V$ is the matrix of right singular vectors, and $\Sigma$ is a diagonal matrix with diagonal elements
 $\sigma_1, \sigma_2, \ldots, \sigma_n$.  Moreover, $U$ and $V$ are orthogonal matrices, and $\sigma_1\ge \sigma_2 \ge \cdots \ge \sigma_n$.
@@ -165,48 +178,68 @@ Show the solution of the above problem is the $\sigma^2$.
 }
 
 \item Consider the following linear programming problem:
-    \[
-        \begin{array}{lll}
-            \max_{x_1,x_2} & z=x_1+x_2 \\
-            \mbox{s.t.} & x_1 + 2x_2 \le 4  \\
-                & 4x_1 + 2x_2 \le 12   \\
-                & -x_1 + x_2 \le 1   \\
-                & x_1, x_2 \ge 0
-        \end{array}
-    \]
+    \begin{equation}
+        \begin{aligned}
+            \max_{x_1,x_2} \quad & z=x_1+x_2 \\
+            \textrm{s.t.} \quad & x_1 + 2x_2 \le 4  \\
+                \quad& 4x_1 + 2x_2 \le 12   \\
+                \quad& -x_1 + x_2 \le 1   \\
+                \quad& x_1, x_2 \ge 0
+        \end{aligned}
+    \end{equation}
 
-\begin{enumerate}
-    \item (10\%) Please refer Note08 (Page 2) to draw the figure of the constraints by any means, and use that to solve the problem. 
-    {\color{blue} 
-        Answer here!
-    }
+    \begin{enumerate}
+        \item (10\%) Please refer Note08 (Page 2) to draw the figure of the constraints by any means, and use that to solve the problem. 
+        {\color{blue} 
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.15]{./4a.png}
+                \caption{Feasible region of $\vec{z}$.}
+            \end{figure}
+        }
 
-    \item (10\%) Derive its dual problem and solve the dual problem by any means. Compare the solutions of the primal and the dual problems.
-    {\color{blue} 
-        Answer here!
-    }
+        \item (10\%) Derive its dual problem and solve the dual problem by any means. Compare the solutions of the primal and the dual problems.
+        {\color{blue} 
+            The dual problem is
+            \begin{equation}
+                \begin{aligned}
+                    \min_{y_1, y_2, y_3} \quad & 4y_1 + 12y_2 + y_3 \\
+                    \textrm{s.t.} \quad & y_1 + 4y_2 - y_3 \geq 1 \\
+                        \quad & 2y_1 + 2y_2 + y_3 \geq 1 \\
+                        \quad & y_1, y_2, y_3 \geq 0 \\
+                \end{aligned}
+            \end{equation}
+        }
 
-    \item (10\%) Verify the complementarity slackness condition.
-    {\color{blue}
-        Answer here!
-    }
+        \item (10\%) Verify the complementarity slackness condition.
+        {\color{blue}
+            Answer here!
+        }
 
-    \item (10\%) Transform the problem to the standard form.
-    {\color{blue} 
-        Answer here!
-    }
+        \item (10\%) Transform the problem to the standard form.
+        {\color{blue} 
+            \begin{equation}
+                \begin{aligned}
+                    \max_{x_1,x_2} \quad & z = x_1+x_2 \\
+                    \textrm{s.t.} \quad & x_1 + 2x_2 + x_3 = 4 \\
+                        \quad & 4x_1 + 2x_2 + x_4 =  12   \\
+                        \quad & -x_1 + x_2 + x_5 = 1  \\
+                        \quad & x_1, x_2, x_3, x_4, x_5 \geq 0
+                \end{aligned}
+            \end{equation}
+        }
 
-    \item (10\%) Solve it by the simplex method, as provided in Figure 1, using $\vec{x}_0 = (0, 0)$.
-    Indicate $B_k, N_k, \vec{s}_k, \vec{d}_k, p_k, q_k, \gamma_k$ in each step.\
-    {\color{blue} 
-        Answer here!
-    }
-\end{enumerate}
+        \item (10\%) Solve it by the simplex method, as provided in Figure 1, using $\vec{x}_0 = (0, 0)$.
+        Indicate $B_k, N_k, \vec{s}_k, \vec{d}_k, p_k, q_k, \gamma_k$ in each step.\
+        {\color{blue} 
+            Answer here!
+        }
+    \end{enumerate}
 
 \begin{figure}[hb]
     \begin{center}
     \begin{tabular}{cp{.2in}l}
-        \hline \hline \\[0pt]
+        \hline \\[0pt]
     (1) & \multicolumn{2}{l}{Given a basic feasible point $\vec{x}_0$ and the corresponding index set}\\
     & \multicolumn{2}{l}{ $\mathcal{B}_0$ and $\mathcal{N}_0$.} \\
     (2) & \multicolumn{2}{l}{For $k=0,1,\ldots$} \\
@@ -242,7 +275,7 @@ Show the solution of the above problem is the $\sigma^2$.
     &&\mbox{\color{blue}($\vec{e}_{i_q}=(0,\ldots,1,\ldots,0)^T$ is a unit vector with $i_q$th element 1.)}\\
     (11) &&Let the $i_p$th element in $\mathcal{B}$ be $p_k$. \mbox{\color{blue}(pivoting)} \\
         & & $\mathcal{B}_{k+1}=(\mathcal{B}_k-\{p_k\})\cup\{q_k\}$,  $\mathcal{N}_{k+1}=(\mathcal{N}_k-\{q_k\})\cup\{p_k\}$  \\[10pt]
-    \hline \hline
+    \hline
     \end{tabular}
     \end{center}
     \caption{The simplex method for solving (minimization) linear programming}\label{}
