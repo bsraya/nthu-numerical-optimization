@@ -10,11 +10,15 @@
 \begin{document}
 \maketitle
 \begin{enumerate}
-    \item Consider the linear least square problem:$$min_{\vec{x}\in \mathbb{R}^2}||A\vec{x} - \vec{b}||^2 ,
-    $$ 
-        where $$A = \left[ \begin{array}{cc}4 & 8 \\ 2 & 4 \\ 1 & 2 \end{array} \right], 
+    \item Consider the linear least square problem:
+    \[ 
+        \min_{\vec{x}\in \mathbb{R}^2}||A\vec{x} - \vec{b}||^2
+    \]
+    where
+    \[
+        A = \left[ \begin{array}{cc}4 & 8 \\ 2 & 4 \\ 1 & 2 \end{array} \right], 
         \vec{b} = \left(\begin{array}{c} 21/4 \\ 0 \\ 0 \end{array} \right)
-    $$
+    \]
 
 \begin{enumerate}
 	\item (10\%) Write its normal equation.
@@ -55,9 +59,9 @@
         \end{align}
 
         We can add $4s \cdot t_1 + 2s \cdot t_2 + s \cdot t_3 = 0$ at the last index of our matrix equality. Then
-        $$
+        \[
         \begin{bmatrix} 4s + t_1 \\ 2s + t_2 \\ s + t_3 \\ 4s \cdot t_1 + 2s \cdot t_2 + s \cdot t_3\end{bmatrix} = \begin{bmatrix} 21/4 \\ 0 \\ 0 \\ 0 \end{bmatrix}
-        $$
+        \]
 
         Solving the equality above, we then have $s = 1$, $t_1 = 5/4$, $t_2 = -2$, and $t_3 = -1$. Thus, 
         \begin{align}
@@ -67,40 +71,79 @@
     }
 
     \item (10\%) Show that $\vec{z}\in \mathbb{R}^2$ is a least square solution for $A\vec{x}=\vec{b}$ if and only if $\vec{z}$ is part of a solution to the larger linear system:
-    $$\left[ \begin{array}{cc}0 & A^T \\ A & I\end{array} \right] \left[\begin{array}{cc} \vec{z} \\ \vec{y} \end{array}\right] = \left[\begin{array}{cc} 0 \\ \vec{b}\end{array}\right]$$
+    \[
+        \left[ \begin{array}{cc}0 & A^T \\ A & I\end{array} \right] \left[\begin{array}{cc} \vec{z} \\ \vec{y} \end{array}\right] = \left[\begin{array}{cc} 0 \\ \vec{b}\end{array}\right]
+    \]
     {\color{blue}
-        \begin{align}
-            \begin{bmatrix} 0 & A^T \\ A & I \end{bmatrix} \begin{bmatrix} \vec{z} \\ \vec{y} \end{bmatrix} &= \begin{bmatrix} 0 \\ \vec{b} \end{bmatrix} \\
-            \begin{bmatrix} 0 & 0 & 4 & 2 & 1 \\ 0 & 0 & 8 & 4 & 2 \\ 4 & 8 & 1 & 0 & 0 \\ 2 & 4 & 0 & 1 & 0 \\ 1 & 2 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} \vec{z}_1 \\ \vec{z}_2 \\ \vec{y}_1 \\ \vec{y}_2 \\ \vec{y}_3 \end{bmatrix} &= \begin{bmatrix} 0 \\ 0 \\ 21/4 \\ 0 \\ 0 \end{bmatrix}
-        \end{align}
-        
-        Solving $y_1$, $y_2$, and $y_3$, we express them as
-        \begin{align}
-            \vec{y} = \begin{bmatrix} 5/4 \\ -2 \\ -1 \end{bmatrix}
-        \end{align}
+        We are going to show that $\vec{z}\in \mathbb{R}^2$ is a least square solution for $A\vec{x}=\vec{b}$ $\iff$ $\vec{z}$ is part of a solution to the larger linear system
+        \begin{enumerate}
+        \item
+            First, we are going to show that if $\vec{z}\in \mathbb{R}^2$ is a least square solution for $A\vec{x}=\vec{b}$ then $\vec{z}$ is part of a solution to the larger linear system.
+            
+            Let's substitute $\vec{x}$ with $\vec{z}$. We then have,
+            \begin{align}
+                A\vec{z} &= \vec{b} \\
+                A^T A \vec{z} &= A^T \vec{b} \\
+                \begin{bmatrix}4 & 2 & 1 \\ 8 & 4 & 2\end{bmatrix} \begin{bmatrix}4 & 8 \\ 2 & 4 \\ 1 & 2\end{bmatrix} \begin{bmatrix} z_1 \\ z_2 \end{bmatrix} &= \begin{bmatrix}4 & 2 & 1 \\ 8 & 4 & 2\end{bmatrix} \begin{bmatrix}21/4 \\ 0 \\ 0\end{bmatrix} \\
+                \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \begin{bmatrix} z_1 \\ z_2 \end{bmatrix} &= \begin{bmatrix} 1 \\ 2 \end{bmatrix} \\
+                z_1 + 2 z_2 = 1
+            \end{align}
+    
+            Then, we can express $z_1$ and $z_2$ as
+            \begin{align}
+                \vec{z} = \begin{bmatrix} 1-2t \\ t \end{bmatrix}
+            \end{align}
 
-        After acquiring $\vec{y}$, we can acquire $\vec{z}$ with the third, the fourth, and the fifth equalities. Thus,
-        \begin{align}
-            4\vec{z}_1 + 8\vec{z}_2 + \vec{y}_1 &= \frac{21}{4} \\ 
-            2\vec{z}_1 + 4\vec{z}_2 + \vec{y}+2 &= 0 \\
-            \vec{z}_1 + 2\vec{z}_2 + \vec{y}_3 &= 0
-        \end{align}
+            The premise, if $\vec{z}\in \mathbb{R}^2$ is a least square solution for $A\vec{x}=\vec{b}$ then $\vec{z}$ is part of a solution to the larger linear system, holds.
+            
 
-        Solving the equalities above, we have $\vec{z}_1 + 2\vec{z}_2 = 1$. 
-        Let $\vec{z}_1 = 1 - 2t$ and $\vec{z}_2 = t$. We can express them as,
-        \begin{align}
-            \vec{z} = \begin{bmatrix} 1 - 2t \\ t \end{bmatrix}
-        \end{align}
+        \item
+            Second, we are going to show that if $\vec{z}$ is a part of the solution to the larger linear system then $\vec{z}\in \mathbb{R}^2$ is a least square solution for $A\vec{x}=\vec{b}$.
+            
+            The larger linear system can be expressed as
+            \begin{align}
+                \begin{bmatrix} 0 & A^T \\ A & I \end{bmatrix} \begin{bmatrix} \vec{z} \\ \vec{y} \end{bmatrix} &= \begin{bmatrix} 0 \\ \vec{b} \end{bmatrix} \\
+                \begin{bmatrix} 0 & 0 & 4 & 2 & 1 \\ 0 & 0 & 8 & 4 & 2 \\ 4 & 8 & 1 & 0 & 0 \\ 2 & 4 & 0 & 1 & 0 \\ 1 & 2 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} \vec{z}_1 \\ \vec{z}_2 \\ \vec{y}_1 \\ \vec{y}_2 \\ \vec{y}_3 \end{bmatrix} &= \begin{bmatrix} 0 \\ 0 \\ 21/4 \\ 0 \\ 0 \end{bmatrix}
+            \end{align}
+            
+            Solving $y_1$, $y_2$, and $y_3$, we express them as
+            \begin{align}
+                \vec{y} = \begin{bmatrix} 5/4 \\ -2 \\ -1 \end{bmatrix}
+            \end{align}
 
-        Since the $\vec{z}$ that we acquire here is the same with the $\vec{z}$ we got from its normal equation, 
-        thus the premise, $\vec{z} \in \mathbb{R}^2$ is a least square solution for $A\vec{x} = \vec{b}$ if and only if $\vec{z}$ is a part of the solution to the larger linear system, holds.
+            After acquiring $\vec{y}$, we can acquire $\vec{z}$ with the third, the fourth, and the fifth row in the matrix. Thus,
+            \begin{align}
+                4\vec{z}_1 + 8\vec{z}_2 + \vec{y}_1 &= \frac{21}{4} \\ 
+                2\vec{z}_1 + 4\vec{z}_2 + \vec{y}+2 &= 0 \\
+                \vec{z}_1 + 2\vec{z}_2 + \vec{y}_3 &= 0
+            \end{align}
+
+            Solving the equalities above, we have 
+            \begin{align}
+                \vec{z}_1 + 2\vec{z}_2 = 1
+            \end{align}
+
+            We can express the equality above in matrix as,
+            \begin{align}
+                \vec{z} = \begin{bmatrix} 1 - 2t \\ t \end{bmatrix}
+            \end{align}
+            Clearly, $\vec{z}$ is a part of the solution to the larger linear system.
+            
+            Thus, the premise, if $\vec{z}$ is a part of the solution to the larger linear system then $\vec{z}\in \mathbb{R}^2$ is a least square solution for $A\vec{x}=\vec{b}$, holds.
+        \end{enumerate}
+
+        By showing the premises above, we can conclude that the statement, $\vec{z}\in \mathbb{R}^2$ is a least square solution for $A\vec{x}=\vec{b}$ if and only if $\vec{z}$ is part of a solution to the larger linear system, holds.
     }
-
 
 \end{enumerate}
     \item In Note05 (Page 16), memoryless BFGS iteration matrix $H_{k+1}$ can be derived from considering the Hestenes–Stiefel form of the nonlinear conjugate gradient method. Recalling that $\vec{s}_k = \alpha_k \vec{p}_k$, we have that the search direction for this method
 is given by
-$$\vec{p}_{k+1} = -\nabla f_{k+1} + \frac{\nabla f_{k+1}^T\vec{y}_k}{\vec{y}^T\vec{p}_k}\vec{p}_k $$ $$ = -\nabla f_{k+1} + \frac{\nabla f_{k+1}^T\vec{y}_k}{\vec{y}^T\vec{s}_k}\vec{s}_k $$ $$ = -( I - \frac{\vec{s}_k\vec{y}_k^T}{\vec{y}^T\vec{s}_k})\nabla f_{k+1} $$ $$ = - \hat{H}_{k+1} \nabla f_{k+1}$$
+\begin{align}
+    \vec{p}_{k+1} &= -\nabla f_{k+1} + \frac{\nabla f_{k+1}^T\vec{y}_k}{\vec{y}^T\vec{p}_k}\vec{p}_k \\
+    &= -\nabla f_{k+1} + \frac{\nabla f_{k+1}^T\vec{y}_k}{\vec{y}^T\vec{s}_k}\vec{s}_k \\ 
+    &= -( I - \frac{\vec{s}_k\vec{y}_k^T}{\vec{y}^T\vec{s}_k})\nabla f_{k+1} \\ 
+    &= - \hat{H}_{k+1} \nabla f_{k+1}
+\end{align}
 However, the matrix $\hat{H}_{k+1}$ is neither symmetric nor positive deﬁnite.
 \begin{enumerate}
     \item (10\%) Please show that the matrix $\hat{H}_{k+1}$ is singular. $\\$ (You can only prove it for the case $\nabla f_k, \vec{p}_k, \vec{y}_k, \vec{s}_k \in \mathbb{R}^2$ for all $k \in \mathbb{N}$.)
@@ -111,7 +154,7 @@ However, the matrix $\hat{H}_{k+1}$ is neither symmetric nor positive deﬁnite.
 \end{enumerate}
 
 \item (10\%) The total least square problem is to solve the following problem
-$$\min_{\vec{x}, \|\vec{x}\|=1} \vec{x}^TA^TA\vec{x}$$
+\[\min_{\vec{x}, \|\vec{x}\|=1} \vec{x}^TA^TA\vec{x}\]
 where $A$ is an $m\times n$ matrix.  Here we assume $m>n$.  
 Let $A=U\Sigma V^T$ be the SVD of $A$, where $U$ is the matrix of left singular vectors, $V$ is the matrix of right singular vectors, and $\Sigma$ is a diagonal matrix with diagonal elements
 $\sigma_1, \sigma_2, \ldots, \sigma_n$.  Moreover, $U$ and $V$ are orthogonal matrices, and $\sigma_1\ge \sigma_2 \ge \cdots \ge \sigma_n$.
@@ -122,13 +165,15 @@ Show the solution of the above problem is the $\sigma^2$.
 }
 
 \item Consider the following linear programming problem:
-$$\begin{array}{lll}
-    \max_{x_1,x_2} & z=x_1+x_2 \\
-    \mbox{s.t.} & x_1 + 2x_2 \le 4  \\
-        & 4x_1 + 2x_2 \le 12   \\
-        & -x_1 + x_2 \le 1   \\
-        & x_1, x_2 \ge 0
-    \end{array}$$
+    \[
+        \begin{array}{lll}
+            \max_{x_1,x_2} & z=x_1+x_2 \\
+            \mbox{s.t.} & x_1 + 2x_2 \le 4  \\
+                & 4x_1 + 2x_2 \le 12   \\
+                & -x_1 + x_2 \le 1   \\
+                & x_1, x_2 \ge 0
+        \end{array}
+    \]
 
 \begin{enumerate}
     \item (10\%) Please refer Note08 (Page 2) to draw the figure of the constraints by any means, and use that to solve the problem. 
