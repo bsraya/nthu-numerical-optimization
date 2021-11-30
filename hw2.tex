@@ -200,15 +200,29 @@ Show the solution of the above problem is the $\sigma^2$.
 
         \item (10\%) Derive its dual problem and solve the dual problem by any means. Compare the solutions of the primal and the dual problems.
         {\color{blue} 
-            The dual problem is
-            \begin{equation}
-                \begin{aligned}
-                    \min_{y_1, y_2, y_3} \quad & 4y_1 + 12y_2 + y_3 \\
-                    \textrm{s.t.} \quad & y_1 + 4y_2 - y_3 \geq 1 \\
-                        \quad & 2y_1 + 2y_2 + y_3 \geq 1 \\
-                        \quad & y_1, y_2, y_3 \geq 0 \\
-                \end{aligned}
-            \end{equation}
+            \begin{enumerate}
+            \item The dual problem is
+                \begin{equation}
+                    \begin{aligned}
+                        \min_{y_1, y_2, y_3} \quad & 4y_1 + 12y_2 + y_3 \\
+                        \textrm{s.t.} \quad & y_1 + 4y_2 - y_3 \geq 1 \\
+                            \quad & 2y_1 + 2y_2 + y_3 \geq 1 \\
+                            \quad & y_1, y_2, y_3 \geq 0 \\
+                    \end{aligned}
+                \end{equation}
+            \item The primal problem is
+                \begin{center}
+                    \begin{tabular}{ c | c | c } % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+                        \textbf{Value 1} & \textbf{Value 2} & \textbf{Value 3}\\
+                        $\alpha$ & $\beta$ & $\gamma$ \\
+                        \hline
+                        1 & 1110.1 & a\\
+                        2 & 10.1 & b\\
+                        3 & 23.113231 & c\\
+                    \end{tabular}
+                \end{center}
+            
+            \end{enumerate}
         }
 
         \item (10\%) Verify the complementarity slackness condition.
