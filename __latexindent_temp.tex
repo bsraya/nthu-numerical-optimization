@@ -238,16 +238,21 @@ Show the solution of the above problem is the $\sigma^2$.
                         $\omega_3 = 3 - \frac{1}{2}\omega_2 + \omega_1$ \\
                     \end{tabular}
                 \end{center}
-    
-                From the table above, we can see that the values of $x_1, x_2, \text{and} z$ to be 
+
+                The values of the slack variables are
                 \[
-                    x_1 = \frac{8}{3}, x_2 = \frac{2}{3}, z = x_1 + x_2 =  \frac{10}{3}
+                    \omega_1 = 0, \omega_2 = 0, \omega_3 = 3 
                 \]
     
-                The values of the slack variables are
-                \begin{align}
-                    \omega_1 = 0, \omega_2 = 0, \omega_3 = 3 
-                \end{align}
+                The values of the decision variables are 
+                \[
+                    x_1 = \frac{8}{3} \\ x_2 = \frac{2}{3}
+                \]
+
+                The objective value
+                \[
+                    z = x_1 + x_2 = \frac{10}{3}
+                \]
 
             \item The dual problem is
                 \begin{equation}
@@ -273,39 +278,51 @@ Show the solution of the above problem is the $\sigma^2$.
 
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[scale=0.5]{./iter1.png}
+                    \includegraphics[scale=0.6]{./iter1.png}
                     \caption{The initial state.}
                 \end{figure}
 
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[scale=0.5]{./iter2.png}
+                    \includegraphics[scale=0.6]{./iter2.png}
                     \caption{The first iteration.}
                 \end{figure}
 
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[scale=0.5]{./iter3.png}
+                    \includegraphics[scale=0.6]{./iter3.png}
                     \caption{The second iteration.}
                 \end{figure}
 
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[scale=0.5]{./iter4.png}
+                    \includegraphics[scale=0.6]{./iter4.png}
                     \caption{The third iteration.}
                 \end{figure}
                 
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[scale=0.5]{./iter5.png}
+                    \includegraphics[scale=0.4]{./iter5.jpg}
                     \caption{The last iteration.}
                 \end{figure}
+
+                In the $z_j$ row, the dual problem's surplus values $s_1 = \frac{8}{3}$ and $s_2 = \frac{2}{3}$.
             \end{enumerate}
+
+            From the solutions that we get from the primal problem and the dual problem, 
+            we can infer that the values of surplus variables in the dual problem are equal to the values of decision variables in the primal problem.
         }
 
         \item (10\%) Verify the complementarity slackness condition.
         {\color{blue}
-            Answer here!
+
+            Suppose that $x = (x_1, x_2, ..., x_n)$ is a {\color{red}primal feasible} solution and $y = (y_1, y_2, ..., y_n)$ is a {\color{red}dual feasible} solution. 
+            Let $(\omega_1, \omega_2, ..., \omega_m)$ be the corresponding primal slack variables, and $(z_1, z_2, ..., z_n)$ be the corresponding dual slack variables.
+            Then {\color{red} $x$ and $y$ are optimal} for their respective problems if and only if:
+            \begin{enumerate}
+                \item $x_j z_j = 0 \text{, for } j = 1,2,...,n$
+                \item $\omega_i y_i = 0 \text{, for } i = 1,2,...,m$
+            \end{enumerate} 
         }
 
         \item (10\%) Transform the problem to the standard form.
