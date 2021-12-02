@@ -196,6 +196,9 @@ Show the solution of the above problem is the $\sigma^2$.
             \includegraphics[scale=0.15]{./4a.png}
             \caption{Feasible region of $\vec{z}$.}
         \end{figure}
+        {\color{blue}
+            Thus, the optimal value is $x = 2.667, y = 0.667$
+        }
 
         \item (10\%) Derive its dual problem and solve the dual problem by any means. Compare the solutions of the primal and the dual problems.
         {\color{blue} 
@@ -320,9 +323,21 @@ Show the solution of the above problem is the $\sigma^2$.
             Let $(\omega_1, \omega_2, ..., \omega_m)$ be the corresponding primal slack variables, and $(z_1, z_2, ..., z_n)$ be the corresponding dual slack variables.
             Then {\color{red} $x$ and $y$ are optimal} for their respective problems if and only if:
             \begin{enumerate}
-                \item $x_j z_j = 0 \text{, for } j = 1,2,...,n$
+                \item $z_j x_j = 0 \text{, for } j = 1,2,...,n$
                 \item $\omega_i y_i = 0 \text{, for } i = 1,2,...,m$
             \end{enumerate} 
+
+            For the primal problem, 
+            \begin{align}
+                z_1 x_1 = 0 \cdot \frac{8}{3} = 0 \\
+                z_2 x_2 = 0 \cdot \frac{2}{3} = 0
+            \end{align}
+
+            For the dual problem, 
+            \begin{align}
+                \omega_1 y_1 = 0 \cdot \frac{1}{3} = 0 \\
+                \omega_2 y_2 = 0 \cdot \frac{1}{6} = 0
+            \end{align}
         }
 
         \item (10\%) Transform the problem to the standard form.
