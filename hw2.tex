@@ -4,7 +4,6 @@
 \usepackage{graphicx}
 \usepackage{color}
 \usepackage{float}
-\usepackage{multirow}
 
 \title{CS532100 Numerical Optimization Homework 2}
 \author{109062710 Bijon Setyawan Raya}
@@ -160,11 +159,11 @@ is given by
 \end{align}
 However, the matrix $\hat{H}_{k+1}$ is neither symmetric nor positive deﬁnite.
 \begin{enumerate}
-    \item (10\%) Please show that the matrix $\hat{H}_{k+1}$ is singular. $\\$ (You can only prove it for the case $\nabla f_k, \vec{p}_k, \vec{y}_k, \vec{s}_k \in \mathbb{R}^2$ for all $k \in \mathbb{N}$.)
+    \item (10\%) Please show that the matrix $\hat{H}_{k+1}$ is singular. $\\$ (You can only prove it for the case ${\nabla}f_k, \vec{p}_k, \vec{y}_k, \vec{s}_k \in\mathbb{R}^2$ for all $k \in\mathbb{N}$.)
     {\color{blue}
         Your answer here!
     }
-    \item (0\%) Please read the reference book (Page 180) to understand the derivation of the inverse hessian formula in Note05 (Page 16). $\\$(you don't need to write anything in this subproblem.) $$H_{k+1} = (I - \frac{\vec{s}_k\vec{y}_k^T}{\vec{y}_k^T\vec{s}_k})(I - \frac{\vec{y}_k\vec{s}_k^T}{\vec{y}_k^T\vec{s}_k}) + \frac{\vec{s}_k\vec{s}_k^T}{\vec{y}_k^T\vec{s}_k}$$
+    \item (0\%) Please read the reference book (Page 180) to understand the derivation of the inverse hessian formula in Note05 (Page 16). $\\$(you don't need to write anything in this subproblem.) \[H_{k+1} = (I - \frac{\vec{s}_k\vec{y}_k^T}{\vec{y}_k^T\vec{s}_k})(I - \frac{\vec{y}_k\vec{s}_k^T}{\vec{y}_k^T\vec{s}_k}) + \frac{\vec{s}_k\vec{s}_k^T}{\vec{y}_k^T\vec{s}_k}\]
 \end{enumerate}
 
 \item (10\%) The total least square problem is to solve the following problem
@@ -319,12 +318,12 @@ Show the solution of the above problem is the $\sigma^2$.
         \item (10\%) Verify the complementarity slackness condition.
         {\color{blue}
 
-            Suppose that $x = (x_1, x_2, ..., x_n)$ is a {\color{red}primal feasible} solution and $y = (y_1, y_2, ..., y_n)$ is a {\color{red}dual feasible} solution. 
-            Let $(\omega_1, \omega_2, ..., \omega_m)$ be the corresponding primal slack variables, and $(z_1, z_2, ..., z_n)$ be the corresponding dual slack variables.
+            Suppose that $x = (x_1, x_2, \ldots, x_n)$ is a {\color{red}primal feasible} solution and $y = (y_1, y_2, \ldots, y_n)$ is a {\color{red}dual feasible} solution. 
+            Let $(\omega_1, \omega_2, \ldots, \omega_m)$ be the corresponding primal slack variables, and $(z_1, z_2, \ldots, z_n)$ be the corresponding dual slack variables.
             Then {\color{red} $x$ and $y$ are optimal} for their respective problems if and only if:
             \begin{enumerate}
-                \item $z_j x_j = 0 \text{, for } j = 1,2,...,n$
-                \item $\omega_i y_i = 0 \text{, for } i = 1,2,...,m$
+                \item $z_j x_j = 0 \text{, for } j = 1, 2, \ldots, n$
+                \item $\omega_i y_i = 0 \text{, for } i = 1, 2, \ldots, m$
             \end{enumerate} 
 
             For the primal problem, 
@@ -344,7 +343,7 @@ Show the solution of the above problem is the $\sigma^2$.
         {\color{blue} 
             \begin{equation}
                 \begin{aligned}
-                    \max_{x_1,x_2} \quad & z = x_1+x_2 \\
+                    \min_{x_1,x_2} \quad & z = - x_1 - x_2 \\
                     \textrm{s.t.} \quad & x_1 + 2x_2 + x_3 = 4 \\
                         \quad & 4x_1 + 2x_2 + x_4 =  12   \\
                         \quad & -x_1 + x_2 + x_5 = 1  \\
@@ -355,8 +354,126 @@ Show the solution of the above problem is the $\sigma^2$.
 
         \item (10\%) Solve it by the simplex method, as provided in Figure 1, using $\vec{x}_0 = (0, 0)$.
         Indicate $B_k, N_k, \vec{s}_k, \vec{d}_k, p_k, q_k, \gamma_k$ in each step.\
+        
         {\color{blue} 
-            Answer here!
+            Let $\mathcal{B} = \begin{bmatrix} 3 & 4 & 5 \end{bmatrix}$ be the index set of the basic variables and $\mathcal{N} = \begin{bmatrix} 1 & 2 \end{bmatrix}$ the index set of the non-basic variables.
+            \begin{enumerate}
+                \item Iteration 1
+                    \[ B = \begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{bmatrix}, N =  \begin{bmatrix}1 & 2 \\ 4 & 2 \\ -1 & 1 \end{bmatrix}\]
+                    \begin{align}
+                        \vec{x}_N &= \begin{bmatrix} 0 \\ 0 \end{bmatrix} \\
+                        \vec{X}_B &= B^{-1}b = b = \begin{bmatrix} 4 \\ 12 \\ 1 \end{bmatrix} \\
+                        \vec{x} &= \begin{bmatrix} \vec{x}_B \\ \vec{x}_N \end{bmatrix}
+                        = \begin{bmatrix} x_3 \\ x_4 \\ x_5 \\ x_1 \\ x_2 \end{bmatrix} 
+                        = \begin{bmatrix} 4 \\ 12 \\ 1 \\ 0 \\ 0 \end{bmatrix} 
+                    \end{align}
+
+                    Solve $\vec{v}$ in $B^T\vec{v} = \vec{c}_B$. Thus, 
+                    \[
+                        \vec{v} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
+                    \]
+
+                    Pricing vector 
+                    \[
+                        \vec{p} = \vec{c}_N - N^T\vec{v} = \begin{bmatrix} -1 \\ -1 \end{bmatrix}
+                    \]
+
+                    Solve $B\vec{s}=A(:,1)$ to check if it is bounded
+                    \begin{align}
+                        \vec{s} &= B^{-1}\vec{A}_1 = \begin{bmatrix} 1 \\ 4 \\ -1 \end{bmatrix} > 0 \\
+                        \vec{d} &= \begin{bmatrix} d_3 \\ d_4 \\ d_5 \\ d_1 \\ d_2 \end{bmatrix} = \begin{bmatrix} -1 \\ -4 \\ -1 \\ 1 \\ 0 \end{bmatrix}
+                    \end{align}
+
+                    Ratio test 
+                    \[
+                        \alpha = \min(|\frac{4}{-1}|, |\frac{12}{-4}|) = 3
+                    \]
+
+                    Thus, 
+                    \begin{align}
+                        \vec{x}_B^{new} &= \vec{x}_B^{old} - \alpha \vec{s} = \begin{bmatrix} 4 \\ 12 \\ 1 \end{bmatrix} - 3 \begin{bmatrix} 1 \\ 4 \\ -1 \end{bmatrix} =  \begin{bmatrix} 1 \\ 0 \\ 4 \end{bmatrix} \\
+                        \vec{x}^{new} &= \begin{bmatrix} x_3 \\ x_1 \\ x_5 \\ x_4 \\ x_2 \end{bmatrix} \\
+                        \vec{B}^{new} &= \begin{bmatrix}1 & 1 & 0 \\ 0 & 4 & 0 \\ 0 & -1 & 1\end{bmatrix} \\
+                        N^{new} &= \begin{bmatrix} 0 & 2 \\ 1 & 2 \\ 0 & 1 \end{bmatrix} \\
+                        A^{new} &= \begin{bmatrix} 0 & 2 & 1 & 1 & 0 \\ 1 & 2 & 0 & 4 & 0 \\ 0 & 1 & 0 & -1 & 1 \end{bmatrix}
+                    \end{align}
+
+                    The index set of the new basic variables are $\mathcal{B} = \{3,1,5\}$ and the non-basic variables are $\mathcal{N} = \{4,2\}$ 
+                
+                \item Iteration 2
+                    \begin{align}
+                        \vec{x}_N &= \begin{bmatrix} 0 \\ 0 \end{bmatrix} \\
+                        \vec{X}_B &= B^{-1}b = b \\
+                        &= \begin{bmatrix} 1 & -1/4 & 0 \\ 0 & 1/4 & 0 \\ 0 & 1/4 & 1 \end{bmatrix} \begin{bmatrix} 4 \\ 12 \\ 1 \end{bmatrix} = \begin{bmatrix} 1 \\ 3 \\ 4 \end{bmatrix}
+                    \end{align}
+                    
+                    Solve $\vec{v}$ in $B^T\vec{v} = \vec{c}_B$. Thus, 
+                    \begin{align}
+                        B^T\vec{v} &= \vec{c}_B \\
+                        &= \begin{bmatrix} 1 & -1/4 & 0 \\ 0 & 1/4 & 0 \\ 0 & 1/4 & 1 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = \begin{bmatrix} 0 \\ -1 \\ 0  \end{bmatrix} \\ 
+                        \vec{v} &= \begin{bmatrix} 0 \\ -1/4 \\ 0 \end{bmatrix}
+                    \end{align}
+
+                    Pricing vector 
+                    \begin{align}
+                        \vec{p} &= \vec{c}_N - N^T\vec{v} \\
+                        &= \begin{bmatrix} 0 \\ -1 \end{bmatrix} - \begin{bmatrix} 0 & 1 & 0 \\ 2 & 2 & 1 \end{bmatrix} \begin{bmatrix} 0 \\ -1/4 \\ 0 \end{bmatrix} \\
+                        &= \begin{bmatrix} 1/4 \\ -1/2 \end{bmatrix}
+                    \end{align}
+
+                    Solve $B\vec{s}=A(:,2)$ to check if it is bounded
+                    \begin{align}
+                        \vec{s} &= B^{-1}\vec{A}_2 \\
+                        \begin{bmatrix} 1 & -1/4 & 0 \\ 0 & 1/4 & 0 \\ 0 & 1/4 & 1 \end{bmatrix} \begin{matrix} 2 \\ 2 \\ 1 \end{matrix} &= \begin{matrix} 3/2 \\ 1/2 \\ 3/2 \end{matrix} > 0 \\
+                        \vec{d} &= \begin{bmatrix} d_3 \\ d_1 \\ d_5 \\ d_4 \\ d_2 \end{bmatrix} = \begin{bmatrix} -3/2 \\ -1/2 \\ -3/2 \\ 0 \\ 1 \end{bmatrix}
+                    \end{align}
+
+                    Ratio test 
+                    \[
+                        \alpha = \min(|-\frac{2}{3}|, |6|, |\frac{8}{3}|) = \frac{2}{3}
+                    \]
+
+                    Thus, 
+                    \begin{align}
+                        \vec{x}^{new} &= \begin{bmatrix} x_2 \\ x_1 \\ x_5 \\ x_3 \\ x_2 \end{bmatrix} \\
+                        \vec{B}^{new} &= \begin{bmatrix} 2 & 1 & 0 \\ 2 & 4 & 0 \\ 1 & -1 & 1\end{bmatrix} \\
+                        N^{new} &= \begin{bmatrix} 0 & 1 \\ 1 & 0 \\ 0 & 0 \end{bmatrix} \\
+                        A^{new} &= \begin{bmatrix} 0 & 1 & 2 & 1 & 0 \\ 1 & 0 & 2 & 4 & 0 \\ 0 & 0 & 1 & -1 & 1 \end{bmatrix}
+                    \end{align}
+
+                    The index set of the new basic variables are $\mathcal{B} = \{2,1,5\}$ and the non-basic variables are $\mathcal{N} = \{4,3\}$ 
+                
+                \item Iteration 3
+                    \begin{align}
+                        \vec{x}_N &= \begin{bmatrix} 0 \\ 0 \end{bmatrix} \\
+                        \vec{X}_B &= B^{-1}b = b \\
+                        &= \begin{bmatrix} 2/3 & -1/6 & 0 \\ -1/3 & 1/3 & 0 \\ -1 & 1/2 & 1 \end{bmatrix} \begin{bmatrix} 4 \\ 12 \\ 1 \end{bmatrix} = \begin{bmatrix} 2/3 \\ 8/3 \\ 3 \end{bmatrix}
+                    \end{align}
+
+                    Solve $\vec{v}$ in $B^T\vec{v} = \vec{c}_B$. Thus, 
+                    \begin{align}
+                        B^T\vec{v} &= \vec{c}_B \\
+                        \begin{bmatrix} 2 & 2 & 1 \\ 1 & 4 & -1 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} &= \begin{bmatrix} 0 \\ -1 \\ 0  \end{bmatrix} \\ 
+                        \vec{v} &= \begin{bmatrix} -1/3 \\ -1/6 \\ 0 \end{bmatrix}
+                    \end{align}
+
+                    Pricing vector 
+                    \begin{align}
+                        \vec{p} &= \vec{c}_N - N^T\vec{v} \\
+                        &= \begin{bmatrix} 0 \\ 0 \end{bmatrix} - \begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} -1/3\\ -1/6 \\ 0 \end{bmatrix} \\
+                        &= \begin{bmatrix} 1/6 \\ 1/3 \end{bmatrix}
+                    \end{align}
+
+                    Since $\vec{p}$ is positive, the stopping condition is reached\dots
+
+                    Thus, 
+                    \begin{align}
+                        \vec{x} &= \begin{bmatrix} \vec{x}_ 1 \\ \vec{x}_ 2 \end{bmatrix} = \begin{bmatrix} 8/3 \\ 2/3 \end{bmatrix} \\
+                        z &= \frac{8}{3} + \frac{2}{3} = \frac{10}{3}
+                    \end{align}
+
+                    The maximum value is $10/3 = 2.667$.
+            \end{enumerate}
         }
     \end{enumerate}
 
@@ -370,35 +487,32 @@ Show the solution of the above problem is the $\sigma^2$.
     (3) & & Let $B_k=A(:,\mathcal{B}_k), N_k=A(:,\mathcal{N}_k)$, $\vec{x}_B=\vec{x}_k(\mathcal{B}_k),
     \vec{x}_N=\vec{x}_k(\mathcal{N}_k)$, \\
         &  & and $\vec{c}_B=\vec{c}_k(\mathcal{B}_k), \vec{c}_N=\vec{c}_k(\mathcal{N}_k)$.\\
-    (4) & & Compute $\vec{s}_k=\vec{c}_N-N_k^T(B_k^{-1})^T\vec{c}_B$  \mbox{\color{blue}(pricing)} \\
-    (5) & & If $\vec{s}_k\ge 0$, return the solution $\vec{x}_k$. \mbox{\color{blue}(found optimal solution)} \\
+    (4) & & Compute $\vec{s}_k=\vec{c}_N-N_k^T{B_k^{-1}}^T\vec{c}_B$  \mbox{\color{blue} (pricing) } \\
+    (5) & & If $\vec{s}_k\ge 0$, return the solution $\vec{x}_k$. \mbox{\color{blue} (found optimal solution) } \\
     (6) & & Select $q_k\in\mathcal{N}_k$ such that $\vec{s}_k(i_q)<0$, \\
         & & where $i_q$ is the index of $q_k$ in $\mathcal{N}_k$\\
-    (7) & & Compute $\vec{d}_k=B^{-1}_kA_k(:,q_k)$. \mbox{\color{blue}(search direction)} \\
-    (8) & & If $\vec{d}_k\le 0$, return \verb"unbounded". \mbox{\color{blue}(unbounded case)} \\
-    (9) & & Compute $\displaystyle [\gamma_k, i_p] = \min_{i,\vec{d}_k(i)>0}\frac{\vec{x}_B(i)}{\vec{d}_k(i)}$ \mbox{\color{blue}(ratio test)}\\
-    &&\mbox{\color{blue}(The first return value is the minimum ratio;}\\
-    &&\mbox{\color{blue} the second return value
-    is the index of the minimum ratio.)} \\
+    (7) & & Compute $\vec{d}_k={B^{-1}_k}A_k(:,q_k)$. \mbox{\color{blue} (search direction) } \\
+    (8) & & If $\vec{d}_k\le 0$, return \verb"unbounded". \mbox{\color{blue} (unbounded case) } \\
+    (9) & & Compute $\displaystyle [\gamma_k, i_p] = \min_{i,\vec{d}_k(i)>0}\frac{\vec{x}_B(i)}{\vec{d}_k(i)}$ \mbox{\color{blue} (ratio test) }\\
+    &&\mbox{\color{blue} (The first return value is the minimum ratio;) }\\
+    &&\mbox{\color{blue} (the second return value is the index of the minimum ratio.) } \\
     (10) & & $\displaystyle x_{k+1}\left(
                         \begin{array}{c}
                         \mathcal{B} \\
                         \mathcal{N} \\
                         \end{array}
-                    \right) =  \left(
-                        \begin{array}{c}
+                    \right) =  \left (\begin{array}{c}
                         \vec{x}_B \\
                         \vec{x}_N \\
                         \end{array}
-                    \right) + \gamma_k \left(
-                        \begin{array}{c}
+                    \right) + \gamma_k \left (\begin{array}{c}
                         -\vec{d}_k \\
                         \vec{e}_{i_q} \\
                         \end{array}
                     \right)$ \\
-    &&\mbox{\color{blue}($\vec{e}_{i_q}=(0,\ldots,1,\ldots,0)^T$ is a unit vector with $i_q$th element 1.)}\\
-    (11) &&Let the $i_p$th element in $\mathcal{B}$ be $p_k$. \mbox{\color{blue}(pivoting)} \\
-        & & $\mathcal{B}_{k+1}=(\mathcal{B}_k-\{p_k\})\cup\{q_k\}$,  $\mathcal{N}_{k+1}=(\mathcal{N}_k-\{q_k\})\cup\{p_k\}$  \\[10pt]
+    &&\mbox{\color{blue} ($\vec{e}_{i_q}={(0,\ldots,1,\ldots,0)}^T$ is a unit vector with $i_q$th element 1.)}\\
+    (11) &&Let the $i_p$th element in $\mathcal{B}$ be $p_k$. \mbox{\color{blue} (pivoting) } \\
+        & & $\mathcal{B}_{k+1} = (\mathcal{B}_k-\{p_k\})\cup\{q_k\}$,  $\mathcal{N}_{k+1}= (\mathcal{N}_k-\{q_k\})\cup\{p_k\}$  \\[10pt]
     \hline
     \end{tabular}
     \end{center}
