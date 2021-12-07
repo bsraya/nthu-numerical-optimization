@@ -209,7 +209,8 @@ Show the solution of the above problem is the $\sigma^2$.
             \caption{Feasible region of $\vec{z}$.}
         \end{figure}
         {\color{blue}
-            Thus, the optimal value is $x = 2.667, y = 0.667$
+            From the figure above, we can see that  $x = 2.667 \text{ and } y = 0.667$. 
+            Thus, the optimal value is $z = x + y = 3.3333$.
         }
 
         \item (10\%) Derive its dual problem and solve the dual problem by any means. Compare the solutions of the primal and the dual problems.
@@ -289,35 +290,42 @@ Show the solution of the above problem is the $\sigma^2$.
                     \end{aligned}
                 \end{equation}
 
-                Since we want to solve the dual problem above, we then convert the equations above into a table and 5 iterations are needed to find the optimal solution.
+                Since we want to solve the dual problem above, we then convert the equations above into a table and 2 iterations are needed to find the optimal solution.
 
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[scale=0.6]{./initial_state.PNG}
+                    \includegraphics[scale=0.6]{./dual1.png}
                     \caption{The initial state.}
                 \end{figure}
 
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[scale=0.6]{./first_iter.png}
-                    \caption{The first iteration.}
+                    \includegraphics[scale=0.6]{./dual2.png}
+                    \caption{The first iteration (1).}
                 \end{figure}
 
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[scale=0.6]{./last_iter_1.png}
+                    \includegraphics[scale=0.6]{./dual3.png}
+                    \caption{The first iteration (2).}
+                \end{figure}
+
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[scale=0.6]{./dual4.png}
                     \caption{The last iteration (1).}
                 \end{figure}
                 
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[scale=0.4]{./last_iter_2.jpg}
+                    \includegraphics[scale=0.4]{./dual5.jpeg}
                     \caption{The last iteration (2).}
                 \end{figure}
 
                 In the $z_j$ row, the dual problem's surplus values $s_1 = \frac{8}{3}$ and $s_2 = \frac{2}{3}$.
             \end{enumerate}
 
+            We have maximixed the negative value of the dual objective function. Therefore, the value 
             From the solutions that we get from the primal problem and the dual problem, 
             we can infer that the values of surplus variables in the dual problem are equal to the values of decision variables in the primal problem.
         }
