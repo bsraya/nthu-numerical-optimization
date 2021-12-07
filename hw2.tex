@@ -174,7 +174,20 @@ $\sigma_1, \sigma_2, \ldots, \sigma_n$.  Moreover, $U$ and $V$ are orthogonal ma
 Show the solution of the above problem is the $\sigma^2$.
 
 {\color{blue}
-    Your answer here!
+    Let $v_1, v_2, \ldots, v_n$ be an orthonormal basis of $\mathbb{R}^n$, 
+    and set $x = c_1v_1 + c_2v_2 + \cdots + c_n v_n$ where $c_1, c_2, \ldots, c_n \in \mathbb{R}$.
+
+    $A^T A = V \Sigma^T U^T U \Sigma V^T = V \Sigma^2 V^T$ with eigenvalues $\sigma_1^2, \sigma_2^2, \ldots, \sigma_n^2 > 0$.
+    \begin{align}
+        \vec{x}^T A^T A \vec{x} &= \vec{x} (c_1 \sigma_1^2 v_1 + c_2 \sigma_2^2 v_2 + \cdots + c_n \sigma_n^2 v_n) \\
+        &= c_1^2 \sigma_1^2 + c_2^2 \sigma_2^2 + \cdots + c_n^2 \sigma_n^2 \\
+        &\geq \sigma_n^2(c_1^2 + c_2^2 + \cdots + c_n^2) = \sigma_n^2 \quad \text{for } ||\vec{x}|| = 1
+    \end{align}
+
+    Thus,
+    \[
+        \min_{\vec{x}, \|\vec{x}\|=1} \vec{x}^T A^T A \vec{x} = \sigma_n^2
+    \]
 }
 
 \item Consider the following linear programming problem:
@@ -280,32 +293,26 @@ Show the solution of the above problem is the $\sigma^2$.
 
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[scale=0.6]{./iter1.png}
+                    \includegraphics[scale=0.6]{./initial_state.PNG}
                     \caption{The initial state.}
                 \end{figure}
 
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[scale=0.6]{./iter2.png}
+                    \includegraphics[scale=0.6]{./first_iter.png}
                     \caption{The first iteration.}
                 \end{figure}
 
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[scale=0.6]{./iter3.png}
-                    \caption{The second iteration.}
-                \end{figure}
-
-                \begin{figure}[H]
-                    \centering
-                    \includegraphics[scale=0.6]{./iter4.png}
-                    \caption{The third iteration.}
+                    \includegraphics[scale=0.6]{./last_iter_1.png}
+                    \caption{The last iteration (1).}
                 \end{figure}
                 
                 \begin{figure}[H]
                     \centering
-                    \includegraphics[scale=0.4]{./iter5.jpg}
-                    \caption{The last iteration.}
+                    \includegraphics[scale=0.4]{./last_iter_2.jpg}
+                    \caption{The last iteration (2).}
                 \end{figure}
 
                 In the $z_j$ row, the dual problem's surplus values $s_1 = \frac{8}{3}$ and $s_2 = \frac{2}{3}$.
