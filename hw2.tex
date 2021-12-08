@@ -322,12 +322,18 @@ Show the solution of the above problem is the $\sigma^2$.
                     \caption{The last iteration (2).}
                 \end{figure}
 
-                From the result that we got from in last iteration, we can see that the values of the dual variables are $y_1 = 1/3 \text{ and } y_2 = 1/6$. In the $z_j$ row, the values of the surplus variables are $s_1=8/3 \text{ and } s_2=2/3$. 
-                With $y_1 = 1/3 \text{ and } y_2 = 1/6$, we have minimized the objective value of the dual proble. Therefore, the value of the objective function for the optimal dual solution must be $-(\frac{-10}{3}) = \frac{10}{3}$.
+                Thus, the objective value for the dual problem is $-(-\frac{10}{3}) = \frac{10}{3}$.
             \end{enumerate}
 
-            From the solutions that we get from the primal problem and the dual problem, we can infer that the values of surplus variables in the dual problem equal to the values of decision variables in the primal problem, 
-            and the optimal values of the primal slack variables are shown in the $C_j - Z_j$ as $y_1, y_2, \text{ and } y_3$. 
+            From the solutions that we get from the primal problem and the dual problem,
+            we can infer that the values of surplus variables in the dual problem equal to the values of decision variables in the primal problem.
+            
+            As for the optimal values of the primal slack variables are the first three entries in the $C_j - Z_j$ row. Thus,
+            \begin{align}
+                \omega_1 &= -(\text{first entry of }C_j - Z_j) = 0 \\
+                \omega_2 &= -(\text{second entry of }C_j - Z_j) = 0 \\ 
+                \omega_3 &= -(\text{third entry of }C_j - Z_j) = 3  
+            \end{align}
             
             Most importantly, we can observe that the optimal value of the objective function is the same for both primal and dual.
         }
