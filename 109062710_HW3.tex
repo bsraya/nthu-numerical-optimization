@@ -1,0 +1,115 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{color}
+
+\title{CS532100 Numerical Optimization Homework 3}
+\author{109062710}
+\date{Due Jan 12}
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item (25\%)
+    Consider the problem
+    \begin{equation}\label{(1)}
+        \begin{array}{cc}
+            \displaystyle\min_{x_1,x_2} & 0.1\times(x_1-3)^2+x_2^2 \\
+            \mbox{s.t.} & x_1^2+x_2^2 -1 \le 0
+        \end{array}
+    \end{equation}
+\begin{enumerate}
+    
+\item Write down the KKT conditions for (1).
+\item Solve the KKT conditions and find the optimal solutions, including the Lagrangian parameters.
+\item Compute the reduced Hessian and check the second order conditions for the solution.
+\end{enumerate}
+{\color{blue}
+Here!
+}
+
+    \item (20\%) Consider the problem 
+    \begin{equation}\label{(2)}
+        \begin{array}{cc}
+            \displaystyle\min_{x_1,x_2, x_3} & (x_1-1)^2+(x_2 - 1)^2 + (x_3 - 1)^2 \\
+            \mbox{s.t.} & 0\le x_1, x_2, x_3\le 2.
+        \end{array}
+    \end{equation}
+    Find the optimization solution $x^{\ast}$ for (2) with gradient projection method, with initial guess at $\vec{x}_0 =  (x_1, x_2, x_3) = (0, 0, 2)^T.\\$
+    (Find out all segments and the minimizers of all segments, and determine whether the
+solution you got from this method is optimal solution. Justify your answer.)
+{\color{blue}
+Here!
+}
+
+
+\item (15\%) Consider the problem 
+\begin{equation}\label{(3)}
+    \begin{array}{cc}
+        \displaystyle\min_{x_1,x_2} & z = 8x_1 + 5x_2 \\
+        \mbox{s.t.} & 2x_1 + x_2 \le 100  \\
+        & 3x_1 + 4x_2 \le 240   \\
+        & x_1, x_2 \ge 0
+    \end{array}
+\end{equation}
+Formulate this problem to the equation of the interior point method, and
+derive the gradient of the Lagrangian and the Jacobian of the function F.
+(The "gradient" means F and the Jacobian is the derivative of F.)
+
+{\color{blue} 
+Here!
+}
+
+\item (20\%) Consider the following constrained optimization problem
+\begin{equation}\label{(4)}
+    \begin{array}{cc}
+        \displaystyle\min_{x_1,x_2} & x_1 + x_2 \\
+        \mbox{s.t.} & x_1^2 + x_2^2 = 2 \\
+    \end{array}
+\end{equation}
+\begin{enumerate}
+    \item Write the augmented Lagrangian penalty function $L$ 
+and Hessian of $L$ of this problem. 
+\item To make the augmented Lagrangian function $L$ exact, what is the penalty parameter $\mu$ should be ?
+\end{enumerate}
+{\color{blue} 
+Here!
+}
+
+
+\item (5\%) Find the condition number $\kappa(A)$ of matrix A. Describe how ill-
+conditioned and good-conditioned matrices behave in matrix computation.
+\[
+    A = \begin{bmatrix} 4 & 0 & 0 \\0 & 0 & 2 \\0 & 3 & 0 \end{bmatrix}
+\]
+
+{\color{blue} 
+Here!
+}
+
+\item (15\%) The problem 15.4 in textbook shows an example of Maratos effect.
+		\begin{align*}
+		\min_{x_1, x_2} & f( x_1, x_2 ) = 2( x_1^2 + x_2^2 -1) -x_1\\
+		\mbox{s.t. } & x_1^2 + x_2^2 -1=0
+		\end{align*}
+	The optimal solution is $\vec{x}^* = (1,0)$. Suppose 
+	$\vec{x}_k =
+		\left(
+		\begin{array}{l}
+			\cos \theta\\
+			\sin \theta
+		\end{array} \right),
+		\vec{p}_k =
+		\left(\begin{array}{c}
+			\sin^2 \theta\\
+			- \sin \theta \cos \theta
+		\end{array} \right)$
+	The Maratos effect says although $\vec{p}_k$ is a good step, but the filter method will reject it. In the textbook and slides, 
+	it says the remedy to this problem is using the second order correction. Read the textbook or the slides to understand the reason why the second order correction can help avoiding this problem. And explain it in your own words. 
+{\color{blue}
+Here!
+}
+
+\end{enumerate}
+
+\end{document}
