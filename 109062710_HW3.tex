@@ -18,15 +18,36 @@
             \mbox{s.t.} & x_1^2+x_2^2 -1 \le 0
         \end{array}
     \end{equation}
-\begin{enumerate}
     
-\item Write down the KKT conditions for (1).
-\item Solve the KKT conditions and find the optimal solutions, including the Lagrangian parameters.
-\item Compute the reduced Hessian and check the second order conditions for the solution.
-\end{enumerate}
-{\color{blue}
-Here!
-}
+    \begin{enumerate}
+        \item Write down the KKT conditions for (1).
+
+        {\color{blue}
+            Let's define the Lagrangian Form first. The Langrangian form is
+            \[
+                L(x_1, x_2, \lambda) = 0.1(x_1 - 3)^2 + x_2^2 - \lambda (1 - x_1^2 - x_2^2)
+            \]
+
+            The KKT conditions are
+            \begin{enumerate}
+                \item $\nabla_{x_1, x_2} L(x_1^*, x_2^*, \lambda^*) = 0$
+                \item $(x_1^*)^2, (x_2^*)^2$
+                \item $\lambda^* \geq 0 $
+                \item $\lambda^*(1 - (x_1^*)^2 - (x_2^*)^2)$
+            \end{enumerate}
+        }
+
+        \item Solve the KKT conditions and find the optimal solutions, including the Lagrangian parameters.
+        {\color{blue}
+            Answer here!
+        }
+
+        \item Compute the reduced Hessian and check the second order conditions for the solution.
+        {\color{blue}
+            Answer here!
+        }
+    \end{enumerate}
+
 
     \item (20\%) Consider the problem 
     \begin{equation}\label{(2)}
@@ -36,11 +57,10 @@ Here!
         \end{array}
     \end{equation}
     Find the optimization solution $x^{\ast}$ for (2) with gradient projection method, with initial guess at $\vec{x}_0 =  (x_1, x_2, x_3) = (0, 0, 2)^T.\\$
-    (Find out all segments and the minimizers of all segments, and determine whether the
-solution you got from this method is optimal solution. Justify your answer.)
-{\color{blue}
-Here!
-}
+    (Find out all segments and the minimizers of all segments, and determine whether the solution you got from this method is optimal solution. Justify your answer.)
+    {\color{blue}
+        Here!
+    }
 
 
 \item (15\%) Consider the problem 
@@ -57,25 +77,68 @@ derive the gradient of the Lagrangian and the Jacobian of the function F.
 (The "gradient" means F and the Jacobian is the derivative of F.)
 
 {\color{blue} 
-Here!
+First, the primal and the dual problems should be defined.
+
+The primal problem is
+\[
+    \begin{array}{cc}
+        \displaystyle\min_{x_1,x_2} & 8x_1 + 5x_2 \\
+        \mbox{s.t.} & 2x_1 + x_2 + x_3 = 100  \\
+        & 3x_1 + 4x_2 + x_4 = 240   \\
+        & x_1, x_2, x_3, x_4 \ge 0
+    \end{array}
+\]
+
+The dual problem is
+\[
+    \begin{array}{cc}
+        \displaystyle \max_{y_1,y_2} & 100x_1 + 240x_2 \\
+        \mbox{s.t.} & = 8  \\
+        & = 5 \\
+        & x_1, x_2, x_3, x_4 \ge 0
+    \end{array}
+\]
 }
 
 \item (20\%) Consider the following constrained optimization problem
-\begin{equation}\label{(4)}
-    \begin{array}{cc}
-        \displaystyle\min_{x_1,x_2} & x_1 + x_2 \\
-        \mbox{s.t.} & x_1^2 + x_2^2 = 2 \\
-    \end{array}
-\end{equation}
-\begin{enumerate}
-    \item Write the augmented Lagrangian penalty function $L$ 
-and Hessian of $L$ of this problem. 
-\item To make the augmented Lagrangian function $L$ exact, what is the penalty parameter $\mu$ should be ?
-\end{enumerate}
-{\color{blue} 
-Here!
-}
+    \begin{equation}\label{(4)}
+        \begin{array}{cc}
+            \displaystyle\min_{x_1,x_2} & x_1 + x_2 \\
+            \mbox{s.t.} & x_1^2 + x_2^2 = 2 \\
+        \end{array}
+    \end{equation}
 
+    \begin{enumerate}
+        \item Write the augmented Lagrangian penalty function $L$ and Hessian of $L$ of this problem. 
+        
+        {\color{blue} 
+            The augmented Lagrangian penalty function is
+            \[
+                x_1 + x_2 - \rho (x_1^2 + x_2^2 - 2) + \frac{\mu}{2}(x_1^2 + x_2^2 - 2)^2
+            \]
+
+            The gradient of $L$ is
+            \[
+                \nabla L(x_1, x_2, \rho) = \begin{bmatrix}
+                    1 - 2 \rho x_1 + 2 \mu x_1 (x_1^2 + x_2^2 - 2) \\
+                    1 - 2 \rho x_2 + 2 \mu x_2 (x_1^2 + x_2^2 - 2)
+                \end{bmatrix}
+            \]
+
+            The Hessian of $L$ is
+            \[
+                \nabla^2 L(x_1, x_2, \rho) = \begin{bmatrix}
+                    -2 \rho + 4 \mu x_1 &  \\ 
+                    3 & 5
+                \end{bmatrix}
+            \]
+        }
+
+        \item To make the augmented Lagrangian function $L$ exact, what is the penalty parameter $\mu$ should be ?
+        {\color{blue} 
+
+        }
+    \end{enumerate}
 
 \item (5\%) Find the condition number $\kappa(A)$ of matrix A. Describe how ill-
 conditioned and good-conditioned matrices behave in matrix computation.
@@ -84,7 +147,36 @@ conditioned and good-conditioned matrices behave in matrix computation.
 \]
 
 {\color{blue} 
-Here!
+In order to calculate the condition number of matrix $A$, we need to know that $cond(A) = ||A|| \cdot ||A^{-1}||$.
+
+However, we should know that $||A||$ the n-norm of matrix $A$. Since the norm-2 is the most common one, we are going to use $||A||_2$ and $||A^{-1}||_2$ 
+
+The inverse of matrix $A$ is
+
+\[
+    A^{-1} = \begin{bmatrix}
+        1/4 & 0 & 0 \\ 0 & 0 & 1/3 \\ 0 & 1/2 & 0
+    \end{bmatrix}
+\]
+
+Calculating both $||A||_2$ and $||A||^{-1}_2$, we get $||A||_2 = 4$ and $||A^{-1}||_2 = 0.5$.
+Thus, $cond_2(A) = ||A||_2 \cdot ||A^{-1}||_2 = 2$.
+
+Other results:
+\begin{enumerate}
+    \item Norm-1 $\rightarrow cond_1(A) = 2$
+    \item Norm-$\infty$ $\rightarrow cond_\infty(A) = 2$
+    \item Frobenius norm $\rightarrow cond_{fro}(A) = 3.505$
+    \item Max norm $\rightarrow cond_{\max}(A) = 2$   
+\end{enumerate}
+
+Ill-conditioned number is a condition where a small change in the input value will result in a large change in the output value.
+
+As oppose to ill-conditioned number, well-conditioned number is a condition where a little or large change to the input in a function will result in a little change to the output.
+
+Therefore, a condition number of $0$ would mean that the matrix removes any error, which isn't possible. However
+
+In fact, the smallest possible condition number is $1$, where an error is neither magnified nor diminished.
 }
 
 \item (15\%) The problem 15.4 in textbook shows an example of Maratos effect.
