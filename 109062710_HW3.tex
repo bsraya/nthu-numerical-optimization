@@ -320,6 +320,66 @@ In fact, the smallest possible condition number is $1$, where an error is neithe
             \vec{x}_{k+1} &= \vec{x}_k + \vec{p}_k \\
             &= \begin{bmatrix} cos \theta + sin^2 \theta \\ sin \theta (1 - cos \theta) \end{bmatrix}
         \end{align}
+
+        We then calculate $||\vec{x}_k - \vec{x}^*||$ and $||\vec{x}_{k+1} - \vec{x}^*||$.
+        \begin{align}
+            ||\vec{x}_k - \vec{x}^*|| &= \begin{bmatrix} \cos \theta-1 \\ \sin \theta \end{bmatrix} \\
+            &=\sqrt{\cos^{2} \theta-2\cos\theta+ 1 +\sin^{2} \theta} \\
+            &=\sqrt{2(1-\cos\theta)}
+        \end{align}
+
+        \begin{align}
+            ||\vec{x}_{k+1}-\vec{x}^{*}|| &= \begin{bmatrix}
+            \cos \theta+\sin ^{2} \theta-1 \\
+            \sin \theta-\sin \theta \cos \theta
+            \end{bmatrix} \\
+            &= \begin{bmatrix}
+            \cos \theta(1-\cos \theta) \\
+            \sin \theta(1-\cos \theta)
+            \end{bmatrix} \\
+            &=\sqrt{\cos ^{2} \theta(1-\cos \theta)^{2}+\sin ^{2} \theta(1-\cos \theta)^{2}} \\
+            &=\sqrt{(1-\cos \theta)^{2}}
+        \end{align}
+
+        Thus,
+        \[
+            \frac{||\vec{x}_{k+1} - \vec{x}^*||}{||\vec{x}_k - \vec{x}^*||} = \frac{1}{2}
+        \]
+
+        Unfortunately, the filter method is going to reject this step because 
+
+        \begin{align}
+            f(\vec{x}_k) &= - \cos \theta \text{ , and } c(\vec{x}_k) = 0 \\
+            f(\vec{x}_{k+1}) &= - \cos \theta - \sin 2 \theta = \sin^2 \theta - \cos \theta > f(\vec{x}_k) \\
+            c(\vec{x}_{k+1}) &= \sin^2 \theta > 0 = (\vec{x}_k)
+        \end{align}
+
+        This is what is called the Maratos Effect.
+
+        The second order correction is believed to be able to solve The Maratos Effect. Instead of stating that $\nabla c\left(\vec{x}_{k}\right)^{T} \vec{p}_{k}+c\left(\vec{x}_{k}\right)=0$, let's express it in a quadratic approximation form.
+
+        \[
+            c \left(\vec{x}_{k}\right)+\nabla c\left(\vec{x}_{k}\right)^{T} \vec{d}_{k}+\frac{1}{2} \vec{d}_{k}^{T} \nabla_{x x}^{2} c(\vec{x}) \vec{d}_{k}=0
+        \]
+
+        Suppose $||\vec{d}_{k}-\vec{p}_{k}||$ is very small. Let's use Taylor expansion in order to approximate the quadratic term.
+
+    
+        \begin{align}
+            c\left(\vec{x}_{k}+\vec{p}_{k}\right) &\approx c\left(\vec{x}_{k}\right)+\nabla c\left(\vec{x}_{k}\right)^{T} \vec{p}_{k}+\frac{1}{2} \vec{p}_{k}^{T} \nabla_{x x}^{2} c(\vec{x}) \vec{p}_{k} \\
+            \frac{1}{2} \vec{d}_{k}^{T} \nabla_{x x}^{2} c(\vec{x}) \vec{d}_{k} &\approx \frac{1}{2} \vec{p}_{k}^{T} \nabla_{x x}^{2} c(\vec{x}) \vec{p}_{k} \\ 
+            &\approx c\left(\vec{x}_{k}+\vec{p}_{k}\right)-c\left(\vec{x}_{k}\right)-\nabla c\left(\vec{x}_{k}\right)^{T} \vec{p}_{k}
+        \end{align}
+
+        Using the $(30)$ can be simplified to
+        \[
+            \nabla c\left(\vec{x}_{k}\right)^{T} \vec{d}_{k}+c\left(\vec{x}_{k}+\vec{p}_{k}\right)-\nabla c\left(\vec{x}_{k}\right)^{T} \vec{p}_{k}=0
+        \]
+
+        Express the equation above with the corrected linearized constraint
+        \[
+            \nabla c\left(\vec{x}_{k}\right)^{T} \vec{p}+c\left(\vec{x}_{k}+\vec{p}_{k}\right)-\nabla c\left(\vec{x}_{k}\right)^{T} \vec{p}_{k}=0
+        \]
     }
 
 \end{enumerate}
